@@ -1,0 +1,10 @@
+/* Animación de escala */
+.bg-gradient-custom {
+  background: linear-gradient(to top, black, rgba(0, 0, 0, 0) 50%);
+}
+
+
+.active {
+  /* font-weight: semibold; */
+  color: white;
+}

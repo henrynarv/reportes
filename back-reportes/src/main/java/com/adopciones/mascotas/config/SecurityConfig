@@ -1,0 +1,28 @@
+package com.example.adopcion.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf().disable() // Desactiva la protección CSRF, útil para pruebas de API REST.
+            .authorizeRequests() // Configura las reglas de autorización.
+                .antMatchers("/", "/index", "/home", "/api/usuarios/registrar").permitAll() // Permite acceso a estas rutas sin autenticación.
+                .antMatchers("/api/**").authenticated() // Requiere autenticación para otras rutas bajo /api/.
+            .and()
+            .httpBasic() // Usa autenticación básica HTTP.
+            .and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // Configura sesiones sin estado para REST.
+
+        return http.build();
+    }
+}

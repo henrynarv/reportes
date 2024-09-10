@@ -1,0 +1,25 @@
+<div *ngIf="isOpen" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+  <div class="bg-white rounded-md shadow-lg p-6 w-2/5">
+    <div class="p-2 rounded-sm mb-3">
+      <h3 class="text-center text-xl font-bold text-gray-600 tracking-wide">Detalles del usuario</h3>
+    </div>
+
+    <div class="flex flex-col md:flex-row ">
+      <div class=" p-2  mr-2 w-52 flex-shrink-0">
+        <img [src]="usuario?.urlImagen" alt="url imagen" class="rounded-sm w-full h-auto">
+      </div>
+
+      <div class="p-2 w-2/3 border-l items-start border-gray-300 ">
+        <p><strong>ID:</strong> {{usuario?.id}}</p>
+        <p><strong>Nombres:</strong> {{usuario?.nombres}}</p>
+        <p><strong>Apellidos:</strong> {{usuario?.apellidos}}</p>
+        <p><strong>Email:</strong> {{usuario?.email}}</p>
+        <p><strong>Tipo de Usuario:</strong> {{usuario?.tipoUsuario}}</p>
+
+      </div>
+    </div>
+    <button (click)="closeModal()" class="btn-primary mt-3">cerrar</button>
+
+  </div>
+  hola
+</div>

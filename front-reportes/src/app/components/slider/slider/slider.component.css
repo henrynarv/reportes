@@ -1,0 +1,40 @@
+/* Estilo para el contenedor Swiper */
+swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* Estilo para las diapositivas */
+swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+swiper-slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Estilos opcionales para la navegación y la paginación */
+.swiper-pagination {
+  bottom: 10px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff;
+}
+
+
+.custom-width {
+  width: full;
+  /* Ancho personalizado */
+}
+
+
+.custom-height {
+  height: 350px;
+  /* Ancho personalizado */
+}

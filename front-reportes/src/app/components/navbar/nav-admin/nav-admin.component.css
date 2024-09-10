@@ -1,0 +1,8 @@
+/* absolute right-0 top-full */
+/*
+ Es equivalente ha  el codigo que esta en  #dropdownAvatar
+#dropdownAvatar {
+  position: absolute;
+  right: 0;
+  top: 100%;
+} */

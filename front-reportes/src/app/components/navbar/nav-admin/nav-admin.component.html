@@ -1,0 +1,81 @@
+<div class="flex relative text-white bg-purple-700  w-full h-20  md:h-16 pr-12">
+
+  <div class="ml-9 content-center text-gray-400 space-x-4 text-lg">
+    <a class="" routerLinkActive="active" [routerLink]="['home']" [routerLinkActiveOptions]="{exact:true}"></a>
+    <a class="" routerLinkActive="active" [routerLink]="['']" [routerLinkActiveOptions]="{exact:true}"></a>
+  </div>
+
+  <div class=" ml-auto mr-6 space-x-7 content-center ">
+    <span class=" space-x-3" *ngIf="usuario; else loggedOut">Bienvenido, <span class=" text-xl font-semibold">{{
+        usuario.nombres
+        }}!</span>
+      <!--
+      <button *ngIf="!isFaceRecognition" class="text-3xl" [routerLink]="['actualizar-usuario']"><i
+          class=" fa fa-circle-user"></i></button>
+      <button *ngIf="isFaceRecognition" class="text-3xl" [routerLink]="['actualizar-usuarioF']"><i
+          class=" fa fa-circle-user"></i></button> -->
+    </span>
+    <!-- Muestra el nombre de usuario -->
+
+    <ng-template #loggedOut>
+      <span class="cursor-pointer" routerLink="/login">Iniciar Sesión</span>
+    </ng-template>
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+  <!-- BOTON DROPDOWN -->
+
+  <button id="dropdownUserAvatarButton" (click)="toggleDropdown()"
+    class="flex absolute right-4 mt-4  text-sm bg-gray-800 rounded-full md:me-0 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-600"
+    type="button">
+    <span class="sr-only">Open user menu</span>
+    <img class="w-8 h-8 rounded-full" [src]="usuario?.urlImagen" alt="user photo">
+  </button>
+
+  <!-- Dropdown menu -->
+  <div id="dropdownAvatar" [ngClass]="{'hidden': !dropdownOpen}"
+    class="z-10 hidden absolute right-0 top-full bg-white divide-y divide-gray-100 rounded-lg shadow w-44 mr-2 dark:bg-gray-700 dark:divide-gray-600 ">
+    <div class="px-4 py-3 text-gray-900 dark:text-white">
+
+      <button (click)="closeDropdown()" *ngIf="!isFaceRecognition" [routerLink]="['actualizar-usuario']">
+        <div class="text-start font-semibold">{{usuario?.nombres}}</div>
+        <div class="font-semibold  text-gray-400 truncate w-40">{{usuario?.email}}</div>
+      </button>
+      <button (click)="closeDropdown()" *ngIf="isFaceRecognition" [routerLink]="['actualizar-usuarioF']">
+        <div class="text-start font-semibold">{{usuario?.nombres}}</div>
+        <div class="font-semibold  text-gray-400 truncate w-40">{{usuario?.email}}</div>
+      </button>
+
+    </div>
+    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
+      <li>
+        <a (click)="closeDropdown()" routerLink="listar-usuarios"
+          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Usuarios</a>
+      </li>
+      <li>
+        <a (click)="closeDropdown()" routerLink="/"
+          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mascotas</a>
+      </li>
+      <li>
+        <a (click)="closeDropdown()" routerLink="tipo-mascotas"
+          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Tipo de mascotas</a>
+      </li>
+    </ul>
+    <div class="py-2" (click)="logout()">
+      <a (click)="closeDropdown()"
+        class="block cursor-pointer px-4 py-2 text-sm text-red-500 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Salir</a>
+    </div>
+  </div>
+</div>

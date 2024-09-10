@@ -1,0 +1,127 @@
+<!-- ====================== -->
+<div class="flex justify-center items-start bg-gray-50 p-6 min-h-screen">
+  <!-- Contenedor principal -->
+  <div class="flex space-x-6 max-w-6xl w-full">
+    <!-- Parte izquierda: menú de navegación -->
+    <div class="w-60 bg-white py-4 px-3 shadow-xl rounded-lg">
+      <!-- Imagen de perfil -->
+      <div class="flex relative  justify-start mb-11">
+        <div class="">
+          <img *ngIf="!fileUrl" alt="Imagen de perfil"
+            class="absolute w-14 h-14  rounded-full border-2 border-gray-400 object-cover" />
+          <img *ngIf="fileUrl" [src]="fileUrl" alt="Imagen de perfil"
+            class="absolute w-14 h-14  rounded-full border-2 border-gray-400 object-cover" />
+        </div>
+
+        <!-- ICONO PARA CARGAR LA IMAGEN -->
+        <div>
+          <label for="fileInput"
+            class=" absolute bottom-0 right-36 p-2 cursor-pointer text-blue-500 hover:text-blue-600">
+            <i class="fas fa-camera fa-lg"></i>
+          </label>
+          <input type="file" id="fileInput" (change)="onFileChange($event)" class="hidden" accept="image/*">
+        </div>
+
+        <div class="mx-16 w-40 ">
+          <p class="truncate text-2xl font-light tracking-wide -mb-1">{{nombreUsuario}}</p>
+          <p class="truncate text-gray-400">{{emailUsuario}}</p>
+        </div>
+
+      </div>
+      <!-- Enlaces de navegación -->
+      <div class="flex justify-center">
+        <ul class="space-y-4" routerLinkActive="true">
+          <li>
+            <button (click)="selectSection('perfil')"
+              [ngClass]="{'border-l-4 border-blue-500 bg-gray-50': selectedSection === 'perfil', }"
+              class="flex items-center p-2 px-6  cursor-pointer w-60 hover:bg-gray-50  text-left">
+              <i class="fas fa-user mr-3"></i> Perfil
+            </button>
+
+          </li>
+          <li>
+            <button (click)="selectSection('contraseña')"
+              [ngClass]="{'border-l-4 border-blue-500 bg-gray-50': selectedSection === 'contraseña'}"
+              class="flex items-center p-2 px-6  text-gray-700 cursor-pointer hover:bg-gray-50  w-60 text-left">
+              <i class="fas fa-lock mr-3"></i> Contraseña
+            </button>
+          </li>
+          <li>
+            <button (click)="selectSection('configuracion')"
+              [ngClass]="{'border-l-4 border-blue-500 bg-gray-50': selectedSection === 'configuracion'}"
+              class="flex items-center p-2 px-6   text-gray-700 cursor-pointer hover:bg-gray-50  w-60 text-left">
+              <i class="fas fa-cog mr-3"></i> Configuración
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Parte derecha: contenido de edición -->
+    <div class="w-2/3 bg-white p-6 shadow-xl rounded-lg">
+      <!-- Aquí se mostrarán los datos y formularios para editar dependiendo de la sección seleccionada -->
+      <!-- <div *ngIf="selectedSection === 'profile'"> -->
+      <div *ngIf="selectedSection === 'perfil'">
+        <h2 class="text-lg font-bold mb-4">Editar Perfil</h2>
+        <!-- Formulario de edición de perfil -->
+        <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+          <div class="mb-4">
+            <label for="nombres" class="block text-sm font-medium text-gray-700">Nombre</label>
+            <input type="text" id="nombres" formControlName="nombres"
+              class="mt-1 block w-full p-2 border border-gray-300  rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" />
+          </div>
+          <div class="mb-4">
+            <label for="apellidos" class="block text-sm font-medium text-gray-700">Apellidos</label>
+            <input type="text" id="apellidos" formControlName="apellidos"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" />
+          </div>
+          <div class="mb-4">
+            <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+            <input type="email" id="email" formControlName="email"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" />
+          </div>
+          <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md">Guardar Cambios</button>
+        </form>
+      </div>
+
+      <!-- <div *ngIf="selectedSection === 'password'"> -->
+      <div *ngIf="selectedSection ==='contraseña'">
+        <h2 class="text-lg font-bold mb-4">Cambiar Contraseña</h2>
+        <!-- Formulario de cambio de contraseña -->
+        <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+          <div class="mb-4 relative">
+            <label for="password" class="block text-sm font-medium text-gray-700">Contraseña Actual</label>
+            <input type="{{showPassword?  'text': 'password'}}" id="password" formControlName="password"
+              class="mt-1 block w-full  p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            <button type="button" (click)="passwordVisible()">
+              <i [ngClass]="{'fa-solid fa-eye': !showPassword, 'fa fa-eye-slash': showPassword}"
+                class="absolute top-8 right-4 text-gray-500 text-xl hover:text-gray-600"></i>
+            </button>
+          </div>
+          <div class="mb-4 relative">
+            <label for="newPassword" class="block text-sm font-medium text-gray-700">Nueva Contraseña</label>
+            <input type="{{showPasswordNew? 'text' : 'password'}}" id="new-passwordNew" formControlName="newPassword"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            <button type="button" (click)="newPasswordVisisble()">
+              <i [ngClass]="{'fa-solid fa-eye': !showPasswordNew, 'fa fa-eye-slash': showPasswordNew}"
+                class="absolute top-8 right-4 text-gray-500 text-xl hover:text-gray-600"></i>
+            </button>
+          </div>
+          <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md">Cambiar Contraseña</button>
+        </form>
+      </div>
+
+      <!-- <div *ngIf="selectedSection === 'settings'"> -->
+      <div *ngIf="selectedSection === 'configuracion'">
+        <h2 class="text-lg font-bold mb-4">Configuración</h2>
+        <!-- Formulario de configuración -->
+        <form>
+          <!-- Añadir campos de configuración aquí -->
+          <button type="submit"
+            class="border-2 border-blue-500 hover:bg-blue-500 text-gray-500 hover:text-white py-2 px-4 rounded-md">Guardar
+            Configuración</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

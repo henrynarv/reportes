@@ -1,0 +1,19 @@
+<div class="p-4">
+  <h2 class="text-xl font-semibold mb-4">Subir imagenes</h2>
+  <input type="file" multiple (change)="onImagenSeleted($event)" accept="image/*" class="mb-4 p-2 border rounded-lg">
+
+
+  <div *ngFor=" let file of images; let i = index" class="mb-4 relative">
+    <div *ngIf="(file | imagenPreview | async) as imageUrl">
+      <img [src]="imageUrl" class="w-auto h-auto object-cover mb-2">
+      <input type="text" [(ngModel)]="descripciones[i]" placeholder="descripcion de la imagen"
+        class="p-2 border rounded-lg w-full">
+    </div>
+    <button class="absolute top-8 left-5 text-2xl text-gray-500 hover:text-gray-700" (click)="deleteImagenSelected(i)">
+      <i class="fas fa-trash"></i>
+    </button>
+
+  </div>
+  <button (click)="uploadImages()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">Subir
+    Imágenes</button>
+</div>

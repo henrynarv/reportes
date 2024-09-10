@@ -1,0 +1,102 @@
+<!-- ====================================== -->
+
+<div>
+  <p class="text-4xl font-extrabold text-center  my-3 text-gray-900">Lista de Usuarios</p>
+</div>
+
+
+<!-- INICO DEL GRID -->
+<div class="flex flex-col md:flex-row gap-4 mx-6">
+  <!-- INICIO DE LA TABLA CON 9 COLUMNAS DEL GRID -->
+  <div class="w-full md:w-3/4 bg-white shadow-xl rounded-lg  p-4">
+    <div class="p-4">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-gray-200 uppercase text-gray-500 text-sm tracking-wider">
+            <th class="p-3">ID</th>
+            <th class="p-3">Nombres</th>
+            <th class="p-3">Apellidos</th>
+            <th class="p-3">Email</th>
+            <th class="p-3">Tipo de usuario</th>
+            <th class="p-3">acciones</th>
+          </tr>
+        </thead>
+
+        <tbody class="divide-y divide-gray-200">
+          <tr class="hover:bg-slate-50" *ngFor="let usuario of usuarios">
+            <td class="p-3 ">{{usuario.id}}</td>
+            <td class="p-3 ">{{usuario.nombres}}</td>
+            <td class="p-3 ">{{usuario.apellidos}}</td>
+            <td class="p-3 ">{{usuario.email}}</td>
+            <td class="p-3 ">{{usuario.tipoUsuario}}</td>
+            <td class="p-3 ">
+              <div class="relative inset-0 flex items-center  group-hover:opacity-100 transition-opacity gap-4">
+                <button (click)="openModal(usuario)"
+                  class="relative text-gray-500 hover:text-gray-900 focus:outline-none mx-1 group">
+                  <i class="fas fa-eye"></i>
+                  <div
+                    class="absolute hidden bg-gray-700 text-white text-xs rounded py-1 px-2 -top-8 left-1/2 transform -translate-x-1/2 mt-2 group-hover:block whitespace-nowrap">
+                    ver mas
+                  </div>
+                </button>
+
+
+
+                <!-- SWITCH -->
+                <div class=" space-x-4">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" class="sr-only peer" checked>
+                    <div
+                      class="w-11 h-5 bg-gray-300 rounded-full peer-checked:bg-blue-500 peer-focus:ring-2 peer-focus:ring-blue-600 peer-focus:ring-offset-2 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div
+                      class="absolute inset-y-0 left-0 flex items-center pl-1 transition-transform duration-200 ease-in-out transform peer-checked:translate-x-full bg-white rounded-full w-5 h-5 peer-checked:bg-white">
+                    </div>
+                  </label>
+                  <span>Activado</span>
+                </div>
+
+              </div>
+
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+  <!-- FIN DE LA TABLA CON 9 COLUMNAS DEL GRID -->
+
+  <!-- INICIO 3 COLUMNAS DEL GRID -->
+  <!-- INICIO DE LA SEGUNDA DIVISIÓN -->
+  <div class="w-full md:w-1/4 bg-white shadow-xl rounded-lg p-4 h-56">
+    <h3 class="text-xl font-bold mb-3 text-gray-800">Filtros</h3>
+    <!-- Contenido de la segunda división -->
+    <div class="space-y-4 h-56">
+      <button class="w-full bg-indigo-600 text-white py-2 px-3 rounded-lg hover:bg-indigo-700">
+        filtrar por ###
+      </button>
+
+      <button class="w-full bg-gray-300 text-gray-800 py-2 px-3 rounded-lg hover:bg-gray-400 ">
+        Ver todos
+      </button>
+
+      <div class="relative">
+        <input type="text" class="w-full py-2 px-12 rounded-lg border-2 border-blue-500" placeholder="Buscar por id">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+          <i class="fas fa-search text-gray-400 "></i>
+          <!-- rotate-90   rota cuando el icono esta del lado derecho  (declarado en estilos)-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FIN DE LA SEGUNDA DIVISIÓN -->
+
+  <!-- FIN 3 COLUMNAS DEL GRID -->
+
+</div>
+
+
+<app-modal-usuarios [isOpen]="isModalOpen" [usuario]="selectedUser" (close)="closeModal()">
+</app-modal-usuarios>

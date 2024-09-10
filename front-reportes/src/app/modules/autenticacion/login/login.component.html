@@ -1,0 +1,59 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+  <div class="w-full max-w-md p-8 bg-white shadow-lg rounded-lg relative">
+    <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Iniciar sesión en PetA</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="space-y-6" autocomplete="off">
+
+      <!-- USURIO -->
+      <div class="relative">
+        <input id="email" formControlName="email" type="text" placeholder="Ingresa correo"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 transition duration-300 ease-in-out" />
+        <i class="fas fa-user absolute top-3 right-4 text-gray-500 text-xl aria-hidden:true "></i>
+        <div *ngIf="email?.invalid && email?.touched" class="text-red-500 text-sm mt-2">
+          El nombre del usuario es obligatorio
+        </div>
+
+      </div>
+
+      <!-- CONTRASEÑA -->
+      <div class="relative">
+        <input id="password" type="{{showPassword? 'text': 'password'}}" formControlName="password"
+          placeholder="Ingresa contraseña"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 transition duration-300 ease-in-out">
+        <button type="button" (click)="passwordVisible()">
+          <i [ngClass]="{'fa-solid fa-eye': !showPassword, 'fa fa-eye-slash': showPassword}"
+            class="absolute top-3 right-4 text-gray-500 text-xl cursor-pointer hover:text-gray-600"
+            aria-hidden="true"></i>
+        </button>
+        <div *ngIf="password?.invalid && password?.touched" class="text-red-500 text-sm mt-2">
+          Password es requerido
+        </div>
+
+      </div>
+
+      <div class="flex space-x-14">
+        <button type="submit" class="btn-ingresar text-center cursor-pointer">
+          Ingesar
+        </button>
+
+        <button type="button" (click)="startRecongnitionFace()" class="w-16 h-auto">
+          <img src="assets/images/face.png" alt="reconocimiento facial">
+
+        </button>
+
+      </div>
+      <div class="flex items-center justify-between mt-4">
+        <div routerLink="/forgot-password" class="text-blue-500 font-semibold cursor-pointer">¿Olvidaste contraseña?
+        </div>
+        <!-- <a href="#" class="text-blue-500 font-semibold">¿Olvidaste contraseña?</a> -->
+        <div class="text-blue-500 cursor-pointer font-semibold" routerLink="/registrar-usuario">Registrate</div>
+      </div>
+
+
+
+    </form>
+
+
+    <app-face-recognition *ngIf="showFaceRecognition"></app-face-recognition>
+  </div>
+</div>

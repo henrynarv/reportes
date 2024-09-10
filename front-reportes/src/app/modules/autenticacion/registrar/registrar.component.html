@@ -1,0 +1,101 @@
+<div class="relative overflow-hidden bg-gray-50 min-h-screen p-6 flex items-center justify-center">
+
+  <!-- INICIO DEL FORMULARIO REGISTRAR USUARIO -->
+  <div class="reltive max-w-4xl w-full bg-white shadow-sm rounded-md p-6">
+    <h2 class="text-3xl font-bold mb-6 text-center text-gray-700">
+      Registrar usuario
+    </h2>
+
+    <!-- INICIO FORMULARIO FORMBUILDER -->
+    <form [formGroup]="usuarioForm" (ngSubmit)="onSubmmit()">
+      <!-- drag an drop de la imagen    div class="mb-6" (drop)="onDrop($event)" (dragover)="onDragOver($event)"> -->
+      <div class="mb-6" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+        <label for="imagen" class="text-gray-600 font-medium">Imagen del usuario </label>
+        <label for="imagen" class=" text-gray-400 font-medium"> (opcional)</label>
+        <!-- contenedor de la imagen linea punteada -->
+        <div class="flex justify-center items-center border-2 border-dashed border-gray-300 rounded-lg p-6 mt-2">
+          <input type="file" id="imagen" (change)="onFileChange($event)" accept="image/*" class="hidden">
+          <label for="imagen" class="cursor-pointer flex flex-col items-center justify-center text-gray-500">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-2" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18m-7 7h7M3 17h4" />
+            </svg>
+            <span class="text-lg">Subir Imagen</span>
+            <p class="text-sm text-gray-400">Arrastra y suelta o selecciona una imagen</p>
+            <p class="text-gray-900">{{nombreFile ? nombreFile : 'nombre hay ninguna imagen seleccionada'}}</p>
+          </label>
+        </div>
+
+        <div class="mt-4 flex justify-center">
+          <img *ngIf="!fileUrl" alt="Vista previa"
+            class="w-48 h-48 object-cover rounded-full border border-gray-300 text-center pt-16 ">
+          <img *ngIf="fileUrl" [src]="fileUrl"
+            class="w-48 h-48 object-cover rounded-full border border-gray-300 text-center ">
+        </div>
+      </div>
+
+      <!-- informacion basica del usuario -->
+      <div class="mb-6">
+        <label for="nombres" class="block text-gray-600 font-medium mb-2">Nombres del usuario</label>
+        <input type="text" id="nombres" formControlName="nombres" placeholder="Nombres del usuario" class="form-input">
+
+        <div *ngIf="usuarioForm.get('nombres')?.invalid && usuarioForm.get('nombres')?.touched"
+          class="text-red-500 text-sm mt-1">
+          Los nombres deben tener 2 caracteres y son obligatorios
+        </div>
+      </div>
+
+
+      <div class="mb-6">
+        <label for="apellidos" class="block text-gray-600 font-medium mb-2">Apellidos del usuario</label>
+        <input type="text" id="apellidos" formControlName="apellidos" class="form-input"
+          placeholder="Apellidos del usuario">
+
+        <div *ngIf="usuarioForm.get('apellidos')?.invalid && usuarioForm.get('apellidos')?.touched"
+          class="text-red-500 text-sm mt-1">
+          Los apellidos deben tener 2 caracteres y son obligatorios
+        </div>
+      </div>
+
+
+      <div class="mb-6">
+        <label for="email" class="block text-gray-600 font-medium mb-2">Email</label>
+        <input type="email" id="email" class="form-input" formControlName="email"
+          placeholder="Email del usuario (ejemplo:juanP@gmail.com)">
+
+        <div *ngIf="usuarioForm.get('email')?.invalid && usuarioForm.get('email')?.touched"
+          class="text-red-500 text-sm mt-1">
+          El email es obligatorio
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <label for="password" class="block font-medium text-gray-600 mb-2">Password</label>
+        <input type="password" id="password" class="form-input" formControlName="password"
+          placeholder="Password del usuario">
+
+        <div *ngIf="usuarioForm.get('password')?.invalid && usuarioForm.get('password')?.touched"
+          class="text-red-500 text-sm mt-1">
+          El password es obligatorio
+        </div>
+      </div>
+
+
+
+      <div class="flex justify-between">
+        <button (click)="onCancel()" type="button" class="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600">
+          Cancelar
+        </button>
+
+        <button type="submit" class=" bg-blue-500 hover:bg-blue-600 px-6 py-3 text-white rounded-lg"
+          [disabled]="usuarioForm.invalid">
+          Guardar
+        </button>
+      </div>
+
+    </form>
+    <!-- FIN FORMULARIO FORMBUILDER -->
+
+  </div>
+  <!-- FIN DEL FORMULARIO REGISTRAR USUARIO -->
+</div>

@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@import 'node_modules/ngx-spinner/animations/ball-spin-fade.css';
+/* Importa el CSS del spinner */
+
+@import 'node_modules/ngx-toastr/toastr.css';
+
+
+@layer components {
+  .card {
+    @apply bg-red-500 grid place-content-center rounded-lg text-white border-2 border-red-600 text-4xl
+  }
+}
+
+
+.btn-primary {
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
+}
+
+/* Botón Secundario */
+.btn-secondary {
+  @apply bg-gray-500 text-white font-bold py-2 px-4 rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50;
+}
+
+/* Botón Deshabilitado */
+.btn-disabled {
+  @apply bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded cursor-not-allowed opacity-50;
+}
+
+ngx-spinner {
+  position: fixed;
+
+  z-index: 9999;
+  /* Asegúrate de que el spinner esté por encima de otros elementos */
+}
+
+
+
+/* Importa los estilos de Swiper */
+@import "node_modules/swiper/swiper-bundle.min.css";
+
+
+@import 'flowbite';
