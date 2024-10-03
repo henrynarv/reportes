@@ -16,23 +16,35 @@ export class ErrorHandlerService {
    * @param error - El objeto HttpErrorResponse que contiene información del error.
    * @returns Un observable con el mensaje de error.
    */
-  handleError(error: HttpErrorResponse) {
-    let errorMessage = 'Ocurrió un error desconocido.';
+  public handleError(error: HttpErrorResponse) {
+    //contruir un mensaje de error detallado
+    let errorMessage = `Código de estado: ${error.status}\nMensaje: ${error.message}`;
 
     if (error.error instanceof ErrorEvent) {
       // Error del cliente o red
-      errorMessage = `Error: ${error.error.message}`;
+      errorMessage = `Error del cliente: ${error.error.message}`;
     } else {
-      // Error del servidor
-      errorMessage = `Código de estado: ${error.status}\nMensaje: ${error.message}`;
+      //error del servidor
+      let serverErrorMessage = error.error ? `Error del servidor: ${error.error}` : '';
+      if (serverErrorMessage) {
+        errorMessage = `${errorMessage}\nDetalles del servidor: ${serverErrorMessage}`;
+      }
+      console.log('error.error', error.error);
     }
-
-    console.error(errorMessage); // Registrar el error en la consola
-    return throwError(errorMessage); // Retornar el error para su manejo en el componente
-
-    // return throwError(() => new Error(errorMessage))
+    console.error('errorMessage', errorMessage);
+    return throwError(() => new Error(errorMessage))
   }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 //EJEMPLO DE INYECCCION EN UN SERVICIO

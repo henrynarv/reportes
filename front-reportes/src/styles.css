@@ -41,6 +41,29 @@ ngx-spinner {
 
 /* Importa los estilos de Swiper */
 @import "node_modules/swiper/swiper-bundle.min.css";
+@import "node_modules/swiper/modules/pagination-element.min.css";
 
 
 @import 'flowbite';
+
+
+/* Puedes añadir estos estilos en tu archivo CSS global */
+.provincia polyline {
+  fill: #373737;
+  stroke: rgb(213, 208, 208);
+  transition: fill 0.3s ease;
+  /* Suave transición en hover */
+  cursor: pointer;
+  /* Cambia el cursor a puntero */
+}
+
+/* Añade un estilo de hover */
+.provincia:hover polyline {
+  fill: #800000;
+  /* Cambia el color de relleno cuando se pasa el cursor */
+}
+
+.provincia.seleccionada polyline {
+  fill: #d40505;
+  /* Color azul mantenido cuando la provincia está seleccionada */
+}

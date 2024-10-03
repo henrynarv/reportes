@@ -26,7 +26,7 @@ public class UploadFileBannerService {
     //private final static String FOLDER = "src/main/resources/static/images/banner/";
     private final long maxFileSize = 5 * 1024 * 1024;// 5 MB
     private static final String URL = "http://localhost:8080/images/banner/";
-    private final String[] allowedTypes = {"image/jpeg", "image/png", "image/gif"};
+    private final String[] allowedTypes = {"image/jpeg", "image/png", "image/gif","video/mp4", "video/quicktime", "video/x-msvideo", "video/webm", "video/3gpp"};
 
 
     public String saveFile(MultipartFile file) throws IOException {

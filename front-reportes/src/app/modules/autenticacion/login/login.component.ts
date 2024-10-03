@@ -46,13 +46,15 @@ export class LoginComponent {
       next:
         respose => {
           this.usuario = respose.nombres
+
           console.log("this.usuario", this.usuario);
           if (respose.tipoUsuario == 'ADMIN') {
             this.router.navigate(['/listar-usuarios']);
             this.toastr.success(this.usuario, " Bienvenido ")
             console.log("respose.tipoUsuario", respose.tipoUsuario);
           } else {
-            this.router.navigate(['/home']);
+            // Redirige a la página principal y reemplaza la URL en el historial
+            this.router.navigate(['/home'], { replaceUrl: true });
             this.toastr.success(this.usuario, " Bienvenido ")
 
           }
@@ -70,6 +72,8 @@ export class LoginComponent {
 
     )
   }
+
+
 
   // onSubmit() {
   //   if (this.loginForm.valid) {

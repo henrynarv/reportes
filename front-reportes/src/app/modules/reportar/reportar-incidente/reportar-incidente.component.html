@@ -1,0 +1,71 @@
+<div class="min-h-screen bg-gray-100 p-10">
+  <div class="container  mx-auto bg-white p-8 rounder-lg shadow-lg ">
+    <div class="flex justify-between">
+      <h2 class="text-3xl font-bold mb-6 text-gray-600">Reportar Incidente</h2>
+      <img src="assets/images/policia.png" alt="policia nacional del Perú" class="w-16">
+    </div>
+    <form [formGroup]="reporteForm" (ngSubmit)="registrarReporte()">
+      <div class="mb-4">
+        <label class="block text-gray-500 font-semibold">Descripción del Incidente</label>
+        <textarea class="w-full p-3 border  border-gray-300 rounded-md" formControlName="descripcion"
+          rows="4"></textarea>
+      </div>
+
+
+      <div class="mb-4 flex space-x-6">
+        <div class="flex-1">
+          <label class="block text-gray-500 font-semibold">Tipo de Incidente</label>
+          <select id="tipoReporteId" formControlName="tipoReporteId"
+            class="w-full p-3 border border-gray-300 rounded-md">
+            <option value="">-- Seleccione un tipo de incidente --</option>
+            <option *ngFor="let tipo of tiposReporte" [value]="tipo.id">{{tipo.nombre | titlecase}}</option>
+          </select>
+        </div>
+
+
+        <div class="flex-1">
+          <label for="" class="block text-gray-500 font-semibold">Provincia de la Libertad</label>
+          <select id="provincia" formControlName="provincia" class="form-select block w-full"
+            class="w-full p-3 border border-gray-300 rounded-md">
+            <option value="">-- Selecciona una provincia --</option>
+            <option *ngFor="let provincia of provincias" [value]="provincia">{{provincia}}</option>
+
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-500 font-semibold">Ubicación</label>
+        <div id="map" class="h-64 w-full bg-gray-200 rounded-md">
+          <!-- ACA VA EL MAPA -->
+        </div>
+      </div>
+
+      <label class="block text-gray-500 font-semibold">Subir Evidencia (Imágenes/videos)</label>
+      <div class="mb-4 flex justify-center items-center border-2 border-dashed border-gray-300 rounded-lg p-6 mt-2">
+
+        <input type="file" id="imagen" (change)="onFileSelected($event)"
+          class="w-full p-3 border border-gray-300 rounded-md hidden">
+        <label for="imagen" class="cursor-pointer flex flex-col items-center justify-center text-gray-500">
+          <i class="fa-solid fa-cloud-arrow-up text-6xl"></i>
+
+
+          <span class="text-xl font-semibold">click aqui para Subir Imagen/Video</span>
+          <div *ngIf="fileName" class="mt-2 text-gray-400">
+            Archivo seleccinado: {{fileName}}
+          </div>
+        </label>
+
+
+      </div>
+
+
+
+
+      <div>
+        <button type="submit" class="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700">Enviar
+          Reporte</button>
+      </div>
+    </form>
+  </div>
+</div>

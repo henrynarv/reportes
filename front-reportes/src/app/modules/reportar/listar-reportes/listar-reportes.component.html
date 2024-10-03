@@ -1,0 +1,49 @@
+<div class="p-4 flex justify-center">
+  <table class="divide-y devide-gray-200 w-3/4">
+    <thead class="bg-gray-50">
+      <tr>
+        <th class="px-6 py-3 text-left text-sm text-gray-500 uppercase tracking-wider">ID</th>
+        <th class="px-6 py-3 text-left text-sm text-gray-500 uppercase tracking-wider">usuario</th>
+        <th class="px-6 py-3 text-left text-sm text-gray-500 uppercase tracking-wider">tipo incidente</th>
+        <th class="px-6 py-3 text-left text-sm text-gray-500 uppercase tracking-wider">descripción</th>
+        <th class="px-6 py-3 text-left text-sm text-gray-500 uppercase tracking-wider">acciones</th>
+      </tr>
+    </thead>
+
+    <tbody class="bg-white divide-y divide-gray-200">
+      <tr class="realtive group hover:shadow-md" *ngFor="let reporte of reportes">
+        <td class=" px-6 py-3 whitespace-nowrap">{{reporte.id}}</td>
+        <td class=" px-6 py-3 whitespace-nowrap">{{reporte.usuario.nombres}}</td>
+        <td class=" px-6 py-3 whitespace-nowrap">{{reporte.tipo.nombre}}</td>
+        <td class=" px-6 py-3 whitespace-nowrap">{{reporte.descripcion}}</td>
+        <td class=" px-6 py-3 whitespace-nowrap">
+          <div class="relative">
+            <div class="absolute inset-0 flex items-center opacity-0 group-hover:opacity-100 transition-opacity gap-4">
+              <button (click)="openModal(reporte)"
+                class="text-gray-500 hover:text-gray-900 focus:outline-none mx-1 group">
+                <i class="fas fa-eye"></i>
+                <div
+                  class="tooltip absolute hidden bg-gray-700 text-white text-xs rounded py-1 px-2 -top-11 left-1/2 transform -translate-x-16 mt-2 group-hover:block">
+                  Ver mas
+                </div>
+              </button>
+
+              <button class="relative text-gray-500 hover:text-red-500 focus:outline-none mx-1 group">
+                <i class="fas fa-trash"></i>
+                <div
+                  class="tooltip absolute hidden bg-gray-700 text-white text-xs rounded py-1 px-2 -top-9 left-1/2 transform -translate-x-6 mt-2 group-hover:block">
+                  Eliminar
+                </div>
+
+              </button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<app-modal-detalle-reportes *ngIf="isModalOpen && selectedReporte" [isOpen]="isModalOpen" [reporte]="selectedReporte"
+  (close)="closeModal()"></app-modal-detalle-reportes>

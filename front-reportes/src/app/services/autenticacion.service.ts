@@ -34,6 +34,7 @@ export class AutenticacionService {
         console.log('User received from server:', user.nombres); // Añade un log para verificar el valor
         sessionStorage.setItem('user', JSON.stringify(user));
         sessionStorage.setItem('authType', 'normal');
+        sessionStorage.setItem('role', user.tipoUsuario);
 
         this.userSubject.next(user);// Actualiza el estado del usuario
         console.log("this.userSubject.next(user)", this.userSubject.next(user));
@@ -42,6 +43,11 @@ export class AutenticacionService {
     )
   }
 
+  //LO USARE PARA PROTEGER LAS RUTAS DEL ADMISNTRADOR
+  isAdmin(): boolean {
+    const role = sessionStorage.getItem('role');
+    return role === 'ADMIN';
+  }
 
   // METODO PARA OBTENER AL USUARIO
 
@@ -85,6 +91,7 @@ export class AutenticacionService {
   logout(): void {
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('authType')
+    sessionStorage.removeItem('role')
     this.userSubject.next(null);
   }
 

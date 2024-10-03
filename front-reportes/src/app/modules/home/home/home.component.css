@@ -19,3 +19,21 @@
 .scale-up {
   animation: scaleUp 0.3s ease-in-out;
 }
+
+
+/* Tooltip styling */
+.relative {
+  position: relative;
+}
+
+.tooltip {
+  bottom: 100%;
+  /* Place the tooltip above the image */
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.relative:hover .tooltip {
+  opacity: 1;
+  /* Show tooltip on hover */
+}

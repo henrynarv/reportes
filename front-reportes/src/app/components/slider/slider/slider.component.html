@@ -1,13 +1,14 @@
-<div>
+<div class="bg-gray-50  mx-20  relative  rounded-2xl mb-4">
   <swiper-container init="false">
     <swiper-slide *ngFor="let image of imagenes">
-      <img [src]="image" alt="Imagen de slider" class="custom-width custom-height" style="width: 100%; height: auto;">
+      <img [src]="image" alt="Imagen de slider" class="shadow-lg custom-width custom-height"
+        style="width: 100%; height: auto;">
+      <!-- <div class="swiper-pagination"></div> -->
     </swiper-slide>
 
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
   </swiper-container>
+  <!-- <div class="swiper-button-next"></div> -->
+  <!-- <div class="swiper-button-prev"></div> -->
 
 
   <!-- <div *ngFor="let image of imagenes">

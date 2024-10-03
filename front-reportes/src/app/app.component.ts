@@ -7,6 +7,6 @@ import { AutenticacionService } from './services/autenticacion.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'front-adopciones';
+  title = 'front-reportes';
 
 }

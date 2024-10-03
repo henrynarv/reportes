@@ -1,6 +1,7 @@
 package com.adopciones.mascotas.services;
 
 import com.adopciones.mascotas.entities.ImagenBanner;
+import com.adopciones.mascotas.excepciones.ImageNotFoundException;
 import com.adopciones.mascotas.excepciones.UsuarioExistenteExcepcion;
 import com.adopciones.mascotas.repositories.IimagenBannerRepository;
 import org.slf4j.Logger;
@@ -68,7 +69,7 @@ public class IimagenBannerServiceImpl implements IimagenBannerService{
         try {
             imagenBannerRepository.deleteById(id);
         }catch (EmptyResultDataAccessException e){
-            throw new IllegalArgumentException("Imagen no encontrada con ID: "+id);
+            throw new ImageNotFoundException("Imagen no encontrada con ID: "+id);
         }catch (Exception e){
             throw  new RuntimeException("Error al eliminar imagen banner de la base de datos");
         }

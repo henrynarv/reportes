@@ -28,6 +28,8 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/ngx-spinner/animations/ball-spin-fade.css",
               "node_modules/flowbite/dist/flowbite.min.css",
+              "node_modules/swiper/modules/pagination-element.min.css",
+              "node_modules/leaflet/dist/leaflet.css",
               "src/styles.css"
             ],
             "scripts": [

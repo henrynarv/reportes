@@ -32,6 +32,17 @@ import { SliderComponent } from './components/slider/slider/slider.component';
 import { register } from 'swiper/element/bundle';
 import { NavAdminComponent } from './components/navbar/nav-admin/nav-admin.component';
 import { NavContainerComponent } from './components/navbar/nav-container/nav-container.component';
+import { ReportarIncidenteComponent } from './modules/reportar/reportar-incidente/reportar-incidente.component';
+import { TutorialAppComponent } from './components/tutorial-app/tutorial-app/tutorial-app.component';
+import { MapaLibertadComponent } from './modules/mapa-svg-libertad/mapa-libertad/mapa-libertad.component';
+import { NoAutorizadoComponent } from './components/no-autorizado/no-autorizado/no-autorizado.component';
+import { ListarReportesComponent } from './modules/reportar/listar-reportes/listar-reportes.component';
+import { ModalDetalleReportesComponent } from './modules/reportar/modal-detalle-reportes/modal-detalle-reportes.component';
+import { HistorialReportesPorusuarioComponent } from './modules/historial-reportes-porusuario/historial-reportes-porusuario.component';
+
+
+
+
 // register Swiper custom elements
 register();
 
@@ -55,6 +66,13 @@ register();
     SliderComponent,
     NavAdminComponent,
     NavContainerComponent,
+    ReportarIncidenteComponent,
+    TutorialAppComponent,
+    MapaLibertadComponent,
+    NoAutorizadoComponent,
+    ListarReportesComponent,
+    ModalDetalleReportesComponent,
+    HistorialReportesPorusuarioComponent,
 
 
 

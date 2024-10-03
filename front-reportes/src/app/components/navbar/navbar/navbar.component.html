@@ -1,8 +1,12 @@
-<div class="flex relative text-white bg-purple-700  w-full h-20  md:h-16">
+<div class="flex  text-white bg-gray-800  w-full h-20 fixed z-50  md:h-16">
+  <!-- <div class="flex relative text-white bg-purple-700  w-full h-20  md:h-16"> -->
 
   <div class="ml-9 content-center text-gray-400 space-x-4 text-lg">
-    <a class="" routerLinkActive="active" [routerLink]="['home']" [routerLinkActiveOptions]="{exact:true}">Home</a>
-    <a class="" routerLinkActive="active" [routerLink]="['']" [routerLinkActiveOptions]="{exact:true}">Perros</a>
+    <a class="" routerLinkActive="active" [routerLink]="['home']" [routerLinkActiveOptions]="{exact:true}">App
+      Reportes</a>
+    <a *ngIf="usuario" class="" routerLinkActive="active" [routerLink]="['historial-reportes']"
+      [routerLinkActiveOptions]="{exact:true}">Historial</a>
+    <a class="" routerLinkActive="active" [routerLink]="['']" [routerLinkActiveOptions]="{exact:true}">contacto</a>
   </div>
 
   <div class=" ml-auto mr-6 space-x-7 content-center ">
